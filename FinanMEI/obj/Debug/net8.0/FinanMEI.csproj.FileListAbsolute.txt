@@ -250,3 +250,4 @@ C:\workspace\FinanMEI\FinanMEI\bin\Debug\net8.0\runtimes\win\lib\net7.0\Microsof
 C:\workspace\FinanMEI\FinanMEI\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Drawing.Common.dll
 C:\workspace\FinanMEI\FinanMEI\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Security.Cryptography.ProtectedData.dll
 C:\workspace\FinanMEI\FinanMEI\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Windows.Extensions.dll
+C:\workspace\FinanMEI\FinanMEI\obj\Debug\net8.0\FinanMEI.sourcelink.json
