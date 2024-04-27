@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FinanMEI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+765232b58bdd1c94202d04534b9b1959736c8079")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d07403f929731785ad5ffbfa8283b6efd56698a0")]
 [assembly: System.Reflection.AssemblyProductAttribute("FinanMEI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FinanMEI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

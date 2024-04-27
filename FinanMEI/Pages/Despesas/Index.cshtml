@@ -1,0 +1,54 @@
+﻿@page
+@model FinanMEI.Pages.Despesas.IndexModel
+
+@{
+    ViewData["Title"] = "Despesas";
+}
+
+<h1>Minhas despesas</h1>
+
+<p>
+    <a asp-page="Create">Cadastrar nova despesa</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Despesa[0].NomeDespesa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Despesa[0].Valor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Despesa[0].Categoria)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Despesa[0].Data)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Despesa) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NomeDespesa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Valor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Categoria)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Data)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.IdDespesa">Alterar</a> |
+                <a asp-page="./Details" asp-route-id="@item.IdDespesa">Detalhes</a> |
+                <a asp-page="./Delete" asp-route-id="@item.IdDespesa">Apagar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -26,6 +26,26 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\workspace\FinanMEI\FinanMEI
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/workspace/FinanMEI/FinanMEI/Pages/Despesas/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGVzcGVzYXNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/workspace/FinanMEI/FinanMEI/Pages/Despesas/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGVzcGVzYXNcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/workspace/FinanMEI/FinanMEI/Pages/Despesas/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGVzcGVzYXNcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/workspace/FinanMEI/FinanMEI/Pages/Despesas/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGVzcGVzYXNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/workspace/FinanMEI/FinanMEI/Pages/Despesas/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGVzcGVzYXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/workspace/FinanMEI/FinanMEI/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -60,6 +80,26 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/workspace/FinanMEI/FinanMEI/Pages/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/workspace/FinanMEI/FinanMEI/Pages/Vendas/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVmVuZGFzXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/workspace/FinanMEI/FinanMEI/Pages/Vendas/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVmVuZGFzXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/workspace/FinanMEI/FinanMEI/Pages/Vendas/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVmVuZGFzXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/workspace/FinanMEI/FinanMEI/Pages/Vendas/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVmVuZGFzXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/workspace/FinanMEI/FinanMEI/Pages/Vendas/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVmVuZGFzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/workspace/FinanMEI/FinanMEI/Pages/_ViewImports.cshtml]
