@@ -18,10 +18,10 @@ namespace FinanMEI.Models
         public string NomeDespesa { get; set; }
 
         [Required]
-        [Column("Valor", TypeName = "DECIMAL")]
+        [Column("Valor", TypeName = "DECIMAL(18, 2)")]
         [DisplayName("Valor")]
         [DisplayFormat(DataFormatString = "{0:C}")]
-        //[DisplayFormat(DataFormatString = "{0:N2}")]
+  
         public decimal Valor { get; set; }
 
         [Required]

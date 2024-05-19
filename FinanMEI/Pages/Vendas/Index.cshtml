@@ -2,13 +2,13 @@
 @model FinanMEI.Pages.Vendas.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Vendas";
 }
 
-<h1>Index</h1>
+<h1>Minhas Vendas</h1>
 
 <p>
-    <a asp-page="Create">Create New</a>
+    <a asp-page="Create">Cadastrar nova venda</a>
 </p>
 <table class="table">
     <thead>
@@ -16,14 +16,15 @@
             <th>
                 @Html.DisplayNameFor(model => model.Venda[0].Produto)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Venda[0].NomeProduto)
-            </th>
+            <!--tinha o NomeProduto-->
             <th>
                 @Html.DisplayNameFor(model => model.Venda[0].ValorUnitario)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Venda[0].Qtde)
+            </th>
+            <th>
+                Valor Total <!-- Novo cabeçalho para Valor Total -->
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Venda[0].Data)
@@ -37,9 +38,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Produto.NomeProduto)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NomeProduto)
-            </td>
+                <!--tinha o NomeProduto-->
             <td>
                 @Html.DisplayFor(modelItem => item.ValorUnitario)
             </td>
@@ -47,12 +46,15 @@
                 @Html.DisplayFor(modelItem => item.Qtde)
             </td>
             <td>
+                @((item.Qtde * item.ValorUnitario).ToString("C")) <!-- Novo cálculo de Valor Total -->
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Data)
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.IdVenda">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.IdVenda">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.IdVenda">Delete</a>
+                    <a asp-page="./Edit" asp-route-id="@item.IdVenda">Alterar</a> |
+                    <a asp-page="./Details" asp-route-id="@item.IdVenda">Detalhes</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.IdVenda">Apagar</a>
             </td>
         </tr>
 }

@@ -15,7 +15,11 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Venda.IdProduto" class="control-label"></label>
-                <select asp-for="Venda.IdProduto" class ="form-control" asp-items="ViewBag.IdProduto"></select>
+                <!--<select asp-for="Venda.IdProduto" class ="form-control" asp-items="ViewBag.IdProduto"></select>-->
+                <select asp-for="Venda.IdProduto" class="form-control" asp-items="Model.IdProdutoSelectList"></select>
+                <!--<select asp-for="Venda.IdProduto" class="form-control" asp-items="ViewData['IdProduto']"></select>-->
+                <option value="">Escolha um produto</option>
+               
             </div>
             <!--<div class="form-group">
                 <label asp-for="Venda.NomeProduto" class="control-label"></label>
@@ -24,7 +28,7 @@
             </div>-->
             <div class="form-group">
                 <label asp-for="Venda.ValorUnitario" class="control-label"></label>
-                <input asp-for="Venda.ValorUnitario" class="form-control" readonly /> <!--NOVO-->
+                <input asp-for="Venda.ValorUnitario" class="form-control" readonly id="Venda_ValorUnitario" /> <!--NOVO-->
                 <!--<span asp-validation-for="Venda.ValorUnitario" class="text-danger"></span>-->
             </div>
             <div class="form-group">
@@ -34,11 +38,11 @@
             </div>
             <div class="form-group">
                 <label asp-for="Venda.Data" class="control-label"></label>
-                <input asp-for="Venda.Data" class="form-control" />
+                <input asp-for="Venda.Data" class="form-control" value="" />
                 <span asp-validation-for="Venda.Data" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Create" class="btn btn-primary" /> <!--coloquei cancel-->
             </div>
         </form>
     </div>
@@ -50,34 +54,50 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-    <!--<script>
-        //NOVO
-        $(document).ready(function () {
-            $('#Venda_IdProduto').change(function () {
-                var selectedProductId = $(this).val();
-                var context = @Html.Raw(Json.Serialize(ViewData["Context"]));
-                var selectedProduct = context.Produtos.find(p => p.idProduto == selectedProductId);
-                $('#ValorUnitario').val(selectedProduct.valorUnitario);
-            });
-        });
-    </script>-->
+
     <script>
-        //NOVO
         $(document).ready(function () {
+            function loadInitialProductValue() {
+                var selectedProductId = $('#Venda_IdProduto').val();
+                if (selectedProductId) {
+                    $.ajax({
+                        url: '@Url.Page("/Vendas/Create", new { handler = "ProductValue" })',
+                        type: 'GET',
+                        data: { productId: selectedProductId },
+                        success: function (data) {
+                            if (data.success) {
+                                $('#Venda_ValorUnitario').val(data.valorUnitario);
+                            } else {
+                                console.log('Erro ao obter o valor do produto:', data.message);
+                            }
+                        },
+                        error: function (xhr, textStatus, errorThrown) {
+                            console.log('Erro ao obter o valor do produto:', errorThrown);
+                        }
+                    });
+                }
+            }
+
             $('#Venda_IdProduto').change(function () {
                 var selectedProductId = $(this).val();
                 $.ajax({
-                    url: '@Url.Page("/Vendas/OnGetProductValue")',
+                    url: '@Url.Page("/Vendas/Create", new { handler = "ProductValue" })',
                     type: 'GET',
                     data: { productId: selectedProductId },
                     success: function (data) {
-                        $('#Venda_ValorUnitario').val(data.valorUnitario);
+                        if (data.success) {
+                            $('#Venda_ValorUnitario').val(data.valorUnitario);
+                        } else {
+                            console.log('Erro ao obter o valor do produto:', data.message);
+                        }
                     },
                     error: function (xhr, textStatus, errorThrown) {
                         console.log('Erro ao obter o valor do produto:', errorThrown);
                     }
                 });
             });
+
+            loadInitialProductValue(); 
         });
     </script>
 

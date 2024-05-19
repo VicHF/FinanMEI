@@ -1,5 +1,7 @@
 using FinanMEI.DAL;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
+using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +12,22 @@ builder.Services.AddRazorPages();
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 var app = builder.Build();
+
+// Configurar a cultura padrão para pt-BR
+var defaultDateCulture = "pt-BR";
+var ci = new CultureInfo(defaultDateCulture);
+ci.NumberFormat.CurrencySymbol = "R$";
+ci.NumberFormat.CurrencyDecimalSeparator = ",";
+ci.NumberFormat.CurrencyGroupSeparator = ".";
+ci.NumberFormat.NumberDecimalSeparator = ",";
+ci.NumberFormat.NumberGroupSeparator = ".";
+
+var localizationOptions = new RequestLocalizationOptions
+{
+    DefaultRequestCulture = new RequestCulture(ci),
+    SupportedCultures = new List<CultureInfo> { ci },
+    SupportedUICultures = new List<CultureInfo> { ci }
+};
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

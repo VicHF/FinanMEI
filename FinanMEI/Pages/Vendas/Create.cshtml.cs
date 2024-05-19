@@ -19,10 +19,18 @@ namespace FinanMEI.Pages.Vendas
             _context = context;
         }
 
-       public IActionResult OnGet()
+        public SelectList IdProdutoSelectList { get; set; } //novo novo
+        public IActionResult OnGet()
         {
-        ViewData["IdProduto"] = new SelectList(_context.Produtos, "IdProduto", "NomeProduto");
-       // ViewData["Context"] = _context;//NOVO
+            IdProdutoSelectList = new SelectList(_context.Produtos, "IdProduto", "NomeProduto");//novo novo
+            //ViewData["IdProduto"] = IdProdutoSelectList;//sugestao automatica complementar
+            //ViewBag.IdProduto = new SelectList(_context.Produtos, "IdProduto", "NomeProduto");
+            //ViewData["IdProduto"] = new SelectList(_context.Produtos, "IdProduto", "NomeProduto");
+            // ViewData["Context"] = _context;//NOVO
+            if (IdProdutoSelectList.Any())
+            {
+                Venda = new Venda { IdProduto = _context.Produtos.First().IdProduto }; // alterou
+            }
             return Page();
         }
 
@@ -36,10 +44,7 @@ namespace FinanMEI.Pages.Vendas
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
+
 
             //Venda.ValorUnitario = ValorUnitario; //NOVO
             // Obter o valor unitário do produto selecionado
@@ -50,13 +55,49 @@ namespace FinanMEI.Pages.Vendas
                 return Page();//NOVO
             }
 
+            
             // Atribuir o valor unitário ao objeto Venda
             Venda.ValorUnitario = produtoSelecionado.ValorUnitario;//NOVO
+            Venda.NomeProduto = produtoSelecionado.NomeProduto;
+
+            // Validar o estado do modelo novamente
+            ModelState.Clear(); // alterou
+            TryValidateModel(Venda); // alterou
+
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
 
             _context.Vendas.Add(Venda);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
         }
+        //public async Task<IActionResult> OnGetProductValue(int productId)//novo novo
+        public async Task<JsonResult> OnGetProductValue(int productId)//novo novo
+        {
+            var produto = await _context.Produtos.FindAsync(productId);
+            if (produto == null)
+            {
+                return new JsonResult(new { success = false, message = "Produto não encontrado." });
+                //return new JsonResult(new { valorUnitario = 0 });
+                //return NotFound();
+            }
+
+            //return new JsonResult(new { valorUnitario = produto.ValorUnitario });
+            return new JsonResult(new { success = true, valorUnitario = produto.ValorUnitario });
+        }
+
+        /*public JsonResult OnGetProductValue(int productId) //novo novo
+        {
+            var produto = _context.Produtos.FirstOrDefault(p => p.IdProduto == productId);
+            if (produto == null)
+            {
+                return new JsonResult(new { success = false, message = "Produto não encontrado." });
+            }
+
+            return new JsonResult(new { success = true, valorUnitario = produto.ValorUnitario });
+        }*/
     }
 }

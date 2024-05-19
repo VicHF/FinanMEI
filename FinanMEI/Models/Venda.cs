@@ -25,7 +25,7 @@ namespace FinanMEI.Models
         public string NomeProduto { get; set; }
 
         [Required]
-        [Column("Valor_Unitario", TypeName = "DECIMAL")]
+        [Column("Valor_Unitario", TypeName = "DECIMAL(18, 2)")]
         [DisplayName("Valor Unitário")]
         [DisplayFormat(DataFormatString = "{0:C}")]
         public decimal ValorUnitario { get; set; }

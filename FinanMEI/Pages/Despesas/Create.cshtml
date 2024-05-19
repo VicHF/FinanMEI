@@ -20,7 +20,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Despesa.Valor" class="control-label"></label>
-                <input asp-for="Despesa.Valor" class="form-control" />
+                <input asp-for="Despesa.Valor" class="form-control" data-val="true" data-val-number="Please enter a valid number." data-val-required="The Valor field is required." />
                 <span asp-validation-for="Despesa.Valor" class="text-danger"></span>
             </div>
             <div class="form-group">
