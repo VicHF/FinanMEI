@@ -66,6 +66,7 @@
                         data: { productId: selectedProductId },
                         success: function (data) {
                             if (data.success) {
+                                var valorUnitario = data.valorUnitario.toString().replace(".", ",");
                                 $('#Venda_ValorUnitario').val(data.valorUnitario);
                             } else {
                                 console.log('Erro ao obter o valor do produto:', data.message);
@@ -86,6 +87,7 @@
                     data: { productId: selectedProductId },
                     success: function (data) {
                         if (data.success) {
+                            var valorUnitario = data.valorUnitario.toString().replace(".", ",");
                             $('#Venda_ValorUnitario').val(data.valorUnitario);
                         } else {
                             console.log('Erro ao obter o valor do produto:', data.message);

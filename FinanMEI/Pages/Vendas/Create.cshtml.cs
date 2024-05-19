@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using FinanMEI.DAL;
 using FinanMEI.Models;
+using System.Globalization;
 
 namespace FinanMEI.Pages.Vendas
 {
@@ -55,7 +56,17 @@ namespace FinanMEI.Pages.Vendas
                 return Page();//NOVO
             }
 
-            
+            // Converter ValorUnitario para o formato com ponto antes de salvar
+            if (decimal.TryParse(Venda.ValorUnitario.ToString().Replace(",", "."), NumberStyles.Any, CultureInfo.InvariantCulture, out var valorConvertido))
+            {
+                Venda.ValorUnitario = valorConvertido;
+            }
+            else
+            {
+                ModelState.AddModelError(string.Empty, "Erro ao converter o valor unitário.");
+                return Page();
+            }
+
             // Atribuir o valor unitário ao objeto Venda
             Venda.ValorUnitario = produtoSelecionado.ValorUnitario;//NOVO
             Venda.NomeProduto = produtoSelecionado.NomeProduto;
