@@ -2,23 +2,23 @@
 @model FinanMEI.Pages.Vendas.CreateModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Cadastro de Vendas";
 }
 
-<h1>Create</h1>
+<h1>Vendas</h1>
 
-<h4>Venda</h4>
+<h4>Cadastre sua venda</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Venda.IdProduto" class="control-label"></label>
+                <label asp-for="Venda.IdProduto" class="control-label">Produto</label>
                 <!--<select asp-for="Venda.IdProduto" class ="form-control" asp-items="ViewBag.IdProduto"></select>-->
                 <select asp-for="Venda.IdProduto" class="form-control" asp-items="Model.IdProdutoSelectList"></select>
                 <!--<select asp-for="Venda.IdProduto" class="form-control" asp-items="ViewData['IdProduto']"></select>-->
-                <option value="">Escolha um produto</option>
+                <!--<option value="">Escolha um produto</option>-->
                
             </div>
             <!--<div class="form-group">
@@ -28,7 +28,7 @@
             </div>-->
             <div class="form-group">
                 <label asp-for="Venda.ValorUnitario" class="control-label"></label>
-                <input asp-for="Venda.ValorUnitario" class="form-control" readonly id="Venda_ValorUnitario" /> <!--NOVO-->
+                <input asp-for="Venda.ValorUnitario" class="form-control" readonly id="Venda_ValorUnitario" /> 
                 <!--<span asp-validation-for="Venda.ValorUnitario" class="text-danger"></span>-->
             </div>
             <div class="form-group">
@@ -42,15 +42,13 @@
                 <span asp-validation-for="Venda.Data" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" /> <!--coloquei cancel-->
+                <input type="submit" value="Salvar" class="btn btn-success" /> 
+                <a asp-page="Index" class="btn btn-primary">Voltar</a>
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-page="Index">Back to List</a>
-</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

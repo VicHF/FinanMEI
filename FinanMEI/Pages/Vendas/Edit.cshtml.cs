@@ -20,6 +20,18 @@ namespace FinanMEI.Pages.Vendas
             _context = context;
         }
 
+        public SelectList IdProdutoSelectList { get; set; }
+        public IActionResult OnGet()
+        {
+            IdProdutoSelectList = new SelectList(_context.Produtos, "IdProduto", "NomeProduto");
+            ViewData["IdProduto"] = IdProdutoSelectList; //precisa?
+            if (IdProdutoSelectList.Any())
+            {
+                Venda = new Venda { IdProduto = _context.Produtos.First().IdProduto };
+            }
+            return Page();
+        }
+
         [BindProperty]
         public Venda Venda { get; set; } = default!;
 

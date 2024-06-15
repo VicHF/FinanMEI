@@ -24,15 +24,13 @@
                 <span asp-validation-for="Produto.ValorUnitario" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Salvar" class="btn btn-primary" />
+                <input type="submit" value="Salvar" class="btn btn-success" />
+                <a asp-page="Index" class="btn btn-primary">Voltar</a>
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-page="Index">Voltar</a>
-</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

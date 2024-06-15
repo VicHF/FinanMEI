@@ -29,6 +29,8 @@ var localizationOptions = new RequestLocalizationOptions
     SupportedUICultures = new List<CultureInfo> { ci }
 };
 
+app.UseRequestLocalization(localizationOptions);
+
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {

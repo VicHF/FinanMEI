@@ -8,26 +8,93 @@
 <h1>Minhas Vendas</h1>
 
 <p>
-    <a asp-page="Create">Cadastrar nova venda</a>
+    <a asp-page="Create" class="btn btn-primary">Cadastrar nova venda</a>
 </p>
+
+<form method="get">
+    <div class="form-group">
+        <label>Produto</label>
+        <input type="text" name="searchProduto" class="form-control" value="@Model.CurrentFilter" />
+    </div>
+    <div class="form-group">
+        <label>Data Inicial</label>
+        <input type="date" name="startDate" class="form-control" value="@Model.StartDate?.ToString("yyyy-MM-dd")" />
+    </div>
+    <div class="form-group">
+        <label>Data Final</label>
+        <input type="date" name="endDate" class="form-control" value="@Model.EndDate?.ToString("yyyy-MM-dd")" />
+    </div>
+    <button type="submit" class="btn btn-primary">Filtrar</button>
+    <a asp-page="./Index" class="btn btn-secondary btn-danger">Limpar Filtro</a>
+</form>
+
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Venda[0].Produto)
+                <a asp-page="./Index" asp-route-sortOrder="@Model.ProdutoSort">
+                    Produto
+                    @if (Model.ProdutoSort == "produto_desc")
+                    {
+                        <span class="sort-icon">&#9660;</span> <!-- Triângulo apontando para baixo -->
+                    }
+                    else
+                    {
+                        <span class="sort-icon">&#9650;</span> <!-- Triângulo apontando para cima -->
+                    }
+                </a>
             </th>
-            <!--tinha o NomeProduto-->
             <th>
-                @Html.DisplayNameFor(model => model.Venda[0].ValorUnitario)
+                <a asp-page="./Index" asp-route-sortOrder="@Model.ValUnitarioSort">
+                    Valor Unitário
+                    @if (Model.ValUnitarioSort == "valunitario_desc")
+                    {
+                        <span class="sort-icon">&#9660;</span> <!-- Triângulo apontando para baixo -->
+                    }
+                    else
+                    {
+                        <span class="sort-icon">&#9650;</span> <!-- Triângulo apontando para cima -->
+                    }
+                </a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Venda[0].Qtde)
+                <a asp-page="./Index" asp-route-sortOrder="@Model.QtdeSort">
+                    Quantidade
+                    @if (Model.QtdeSort == "qtde_desc")
+                    {
+                        <span class="sort-icon">&#9660;</span> <!-- Triângulo apontando para baixo -->
+                    }
+                    else
+                    {
+                        <span class="sort-icon">&#9650;</span> <!-- Triângulo apontando para cima -->
+                    }
+                </a>
             </th>
             <th>
-                Valor Total <!-- Novo cabeçalho para Valor Total -->
+                <a asp-page="./Index" asp-route-sortOrder="@Model.ValorTotalSort">
+                    Valor Total
+                    @if (Model.ValorTotalSort == "valortotal_desc")
+                    {
+                        <span class="sort-icon">&#9660;</span> <!-- Triângulo apontando para baixo -->
+                    }
+                    else
+                    {
+                        <span class="sort-icon">&#9650;</span> <!-- Triângulo apontando para cima -->
+                    }
+                </a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Venda[0].Data)
+                <a asp-page="./Index" asp-route-sortOrder="@Model.DataSort">
+                    Data
+                    @if (Model.DataSort == "data_desc")
+                    {
+                        <span class="sort-icon">&#9660;</span> <!-- Triângulo apontando para baixo -->
+                    }
+                    else
+                    {
+                        <span class="sort-icon">&#9650;</span> <!-- Triângulo apontando para cima -->
+                    }
+                </a>
             </th>
             <th></th>
         </tr>
@@ -38,7 +105,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Produto.NomeProduto)
             </td>
-                <!--tinha o NomeProduto-->
+              
             <td>
                 @Html.DisplayFor(modelItem => item.ValorUnitario)
             </td>
@@ -46,15 +113,15 @@
                 @Html.DisplayFor(modelItem => item.Qtde)
             </td>
             <td>
-                @((item.Qtde * item.ValorUnitario).ToString("C")) <!-- Novo cálculo de Valor Total -->
+                @((item.Qtde * item.ValorUnitario).ToString("C"))
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Data)
             </td>
             <td>
-                    <a asp-page="./Edit" asp-route-id="@item.IdVenda">Alterar</a> |
-                    <a asp-page="./Details" asp-route-id="@item.IdVenda">Detalhes</a> |
-                    <a asp-page="./Delete" asp-route-id="@item.IdVenda">Apagar</a>
+                    <a asp-page="./Edit" asp-route-id="@item.IdVenda" class="btn btn-primary">Alterar</a> 
+                    <!--<a asp-page="./Details" asp-route-id="@item.IdVenda">Detalhes</a> |-->
+                    <a asp-page="./Delete" asp-route-id="@item.IdVenda" class="btn btn-secondary btn-danger">Apagar</a>
             </td>
         </tr>
 }

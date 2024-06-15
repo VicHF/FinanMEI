@@ -8,16 +8,36 @@
 <h1>Meus Produtos</h1>
 
 <p>
-    <a asp-page="Create">Cadastrar novo produto</a>
+    <a asp-page="Create" class="btn btn-primary">Cadastrar novo produto</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Produto[0].NomeProduto)
+                <a asp-page="./Index" asp-route-sortOrder="@Model.ProdutoSort">
+                    Produto
+                    @if (Model.ProdutoSort == "produto_desc")
+                    {
+                        <span class="sort-icon">&#9660;</span> <!-- Triângulo apontando para baixo -->
+                    }
+                    else
+                    {
+                        <span class="sort-icon">&#9650;</span> <!-- Triângulo apontando para cima -->
+                    }
+                </a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Produto[0].ValorUnitario)
+                <a asp-page="./Index" asp-route-sortOrder="@Model.ValUnitarioSort">
+                    Valor Unitário
+                    @if (Model.ValUnitarioSort == "valunitario_desc")
+                    {
+                        <span class="sort-icon">&#9660;</span> <!-- Triângulo apontando para baixo -->
+                    }
+                    else
+                    {
+                        <span class="sort-icon">&#9650;</span> <!-- Triângulo apontando para cima -->
+                    }
+                </a>
             </th>
             <th></th>
         </tr>
@@ -32,9 +52,9 @@
                     @Html.DisplayFor(modelItem => item.ValorUnitario)
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.IdProduto">Alterar</a> |
-                <a asp-page="./Details" asp-route-id="@item.IdProduto">Detalhes</a> |
-                <a asp-page="./Delete" asp-route-id="@item.IdProduto">Apagar</a>
+                    <a asp-page="./Edit" asp-route-id="@item.IdProduto" class="btn btn-primary">Alterar</a> 
+                    <!--<a asp-page="./Details" asp-route-id="@item.IdProduto">Detalhes</a> |-->
+                    <a asp-page="./Delete" asp-route-id="@item.IdProduto" class="btn btn-secondary btn-danger">Apagar</a>
             </td>
         </tr>
 }

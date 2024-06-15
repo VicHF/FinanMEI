@@ -8,22 +8,84 @@
 <h1>Minhas Despesas</h1>
 
 <p>
-    <a asp-page="Create">Cadastrar nova despesa</a>
+    <a asp-page="Create" class="btn btn-primary">Cadastrar nova despesa</a>
 </p>
+
+<form method="get">
+    <div class="form-group">
+        <label>Descrição da Despesa</label>
+        <input type="text" name="searchDespesa" class="form-control" value="@Model.CurrentFilter" />
+    </div>
+    <div class="form-group">
+        <label>Categoria</label>
+        <input type="text" name="searchCategoria" class="form-control" value="@Model.CurrentCategoriaFilter" />
+    </div>
+    <div class="form-group">
+        <label>Data Inicial</label>
+        <input type="date" name="startDate" class="form-control" value="@Model.StartDate?.ToString("yyyy-MM-dd")" />
+    </div>
+    <div class="form-group">
+        <label>Data Final</label>
+        <input type="date" name="endDate" class="form-control" value="@Model.EndDate?.ToString("yyyy-MM-dd")" />
+    </div>
+    <button type="submit" class="btn btn-primary">Filtrar</button>
+    <a asp-page="./Index" class="btn btn-secondary btn-danger">Limpar Filtro</a>
+</form>
+
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Despesa[0].NomeDespesa)
+                <a asp-page="./Index" asp-route-sortOrder="@Model.DespesaSort">
+                    Descrição da Despesa
+                    @if (Model.CurrentSort == "despesa_desc")
+                    {
+                        <span class="sort-icon">&#9660;</span> <!-- Triângulo apontando para baixo -->
+                    }
+                    else
+                    {
+                        <span class="sort-icon">&#9650;</span> <!-- Triângulo apontando para cima -->
+                    }
+                </a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Despesa[0].Valor)
+                <a asp-page="./Index" asp-route-sortOrder="@Model.ValorDespSort">
+                    Valor
+                    @if (Model.CurrentSort == "valordesp_desc")
+                    {
+                        <span class="sort-icon">&#9660;</span> <!-- Triângulo apontando para baixo -->
+                    }
+                    else
+                    {
+                        <span class="sort-icon">&#9650;</span> <!-- Triângulo apontando para cima -->
+                    }
+                </a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Despesa[0].Categoria)
+                <a asp-page="./Index" asp-route-sortOrder="@Model.CategoriaDespSort">
+                    Categoria
+                    @if (Model.CurrentSort == "catdesp_desc")
+                    {
+                        <span class="sort-icon">&#9660;</span> <!-- Triângulo apontando para baixo -->
+                    }
+                    else
+                    {
+                        <span class="sort-icon">&#9650;</span> <!-- Triângulo apontando para cima -->
+                    }
+                </a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Despesa[0].Data)
+                <a asp-page="./Index" asp-route-sortOrder="@Model.DataSort">
+                    Data
+                    @if (Model.CurrentSort == "data_desc")
+                    {
+                        <span class="sort-icon">&#9660;</span> <!-- Triângulo apontando para baixo -->
+                    }
+                    else
+                    {
+                        <span class="sort-icon">&#9650;</span> <!-- Triângulo apontando para cima -->
+                    }
+                </a>
             </th>
             <th></th>
         </tr>
@@ -44,9 +106,9 @@
                 @Html.DisplayFor(modelItem => item.Data)
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.IdDespesa">Alterar</a> |
-                <a asp-page="./Details" asp-route-id="@item.IdDespesa">Detalhes</a> |
-                <a asp-page="./Delete" asp-route-id="@item.IdDespesa">Apagar</a>
+                    <a asp-page="./Edit" asp-route-id="@item.IdDespesa" class="btn btn-primary">Alterar</a> 
+                    <!--<a asp-page="./Details" asp-route-id="@item.IdDespesa">Detalhes</a> |-->
+                    <a asp-page="./Delete" asp-route-id="@item.IdDespesa" class="btn btn-secondary btn-danger">Apagar</a>
             </td>
         </tr>
 }

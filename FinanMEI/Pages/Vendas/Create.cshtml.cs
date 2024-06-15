@@ -46,6 +46,10 @@ namespace FinanMEI.Pages.Vendas
         public async Task<IActionResult> OnPostAsync()
         {
 
+            /*if (!ModelState.IsValid) //1.1
+            {
+                return Page();
+            }*/
 
             //Venda.ValorUnitario = ValorUnitario; //NOVO
             // Obter o valor unitário do produto selecionado
@@ -68,14 +72,15 @@ namespace FinanMEI.Pages.Vendas
             }
 
             // Atribuir o valor unitário ao objeto Venda
-            Venda.ValorUnitario = produtoSelecionado.ValorUnitario;//NOVO
+            Venda.ValorUnitario = produtoSelecionado.ValorUnitario;//1.0
             Venda.NomeProduto = produtoSelecionado.NomeProduto;
 
             // Validar o estado do modelo novamente
-            ModelState.Clear(); // alterou
-            TryValidateModel(Venda); // alterou
+            ModelState.Clear(); // 1.0
+            TryValidateModel(Venda); 
+            
 
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid) //1.0
             {
                 return Page();
             }
@@ -95,9 +100,9 @@ namespace FinanMEI.Pages.Vendas
                 //return new JsonResult(new { valorUnitario = 0 });
                 //return NotFound();
             }
-
+            string valorUnitarioFormatado = produto.ValorUnitario.ToString("N2").Replace(".", ",");
             //return new JsonResult(new { valorUnitario = produto.ValorUnitario });
-            return new JsonResult(new { success = true, valorUnitario = produto.ValorUnitario });
+            return new JsonResult(new { success = true, valorUnitario = valorUnitarioFormatado });
         }
 
         /*public JsonResult OnGetProductValue(int productId) //novo novo
